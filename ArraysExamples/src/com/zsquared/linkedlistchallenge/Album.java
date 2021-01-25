@@ -1,4 +1,4 @@
-package com.zsquared.innerclasseschallenge;
+package com.zsquared.linkedlistchallenge;
 
 import java.util.ArrayList;
 import java.util.LinkedList;

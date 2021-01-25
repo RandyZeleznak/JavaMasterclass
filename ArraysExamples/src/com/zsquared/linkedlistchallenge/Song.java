@@ -1,4 +1,4 @@
-package com.zsquared.innerclasseschallenge;
+package com.zsquared.linkedlistchallenge;
 
 public class Song {
     private String title;

@@ -5,36 +5,25 @@ import java.util.LinkedList;
 
 public class Album {
     private String name;
-    private String Artist;
-    private ArrayList<Song> songs;
+    private String artist;
+    private SongList songs;
 
     public Album(String name, String artist) {
         this.name = name;
-        Artist = artist;
-        this.songs = new ArrayList<Song>();
+        artist = artist;
+        this.songs = new SongList();
     }
 
     public boolean addSong(String title, double duration){
-        if(findSong(title) == null){
-            this.songs.add(new Song(title,duration));
-            return true;
-        }
-        return false;
+        return this.songs.add(new Song(title, duration));
     }
 
-    private Song findSong(String title){
-        for(Song checkedSong: this.songs){
-            if(checkedSong.getTitle().equals(title)){
-                return checkedSong;
-            }
-        }
-        return null;
-    }
+
 
     public boolean addToPlaylist(int trackNumber, LinkedList<Song> playlist){
-        int index = trackNumber-1;
-        if((index>=0) && (index <= this.songs.size())){
-            playlist.add(this.songs.get(index));
+        Song checkedSong = this.songs.findSong(trackNumber);
+        if(checkedSong != null){
+            playlist.add(checkedSong);
             return true;
         }
         System.out.println("This album does not contain track" +trackNumber);
@@ -42,7 +31,7 @@ public class Album {
     }
 
     public boolean addToPlaylist(String title, LinkedList<Song> playlist){
-        Song checkedSong = findSong(title);
+        Song checkedSong = songs.findSong(title);
         if(checkedSong != null){
             playlist.add(checkedSong);
             return true;
@@ -51,8 +40,39 @@ public class Album {
         return false;
     }
 
+    private class SongList {
+         private ArrayList<Song> songs;
+
+         public SongList(){
+             this.songs = new ArrayList<Song>();
+         }
+
+        public boolean add(Song song) {
+            if(songs.contains(song)) {
+                return false;
+            }
+            this.songs.add(song);
+            return true;
+        }
+
+        private Song findSong(String title) {
+            for (Song checkedSong : this.songs) {
+                if (checkedSong.getTitle().equals(title)) {
+                    return checkedSong;
+                }
+            }
+            return null;
+        }
 
 
+        public Song findSong(int trackNumber) {
+            int index = trackNumber - 1;
+            if ((index > 0) && (index<songs.size())) {
+                return songs.get(index);
+            }
+            return null;
+        }
+    }
 
 
 

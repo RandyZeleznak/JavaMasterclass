@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="PackagesAndScope:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/PackagesAndScope_jar</output-path>
+    <root id="archive" name="PackagesAndScope.jar">
+      <element id="module-output" name="PackagesAndScope" />
+    </root>
+  </artifact>
+</component>
